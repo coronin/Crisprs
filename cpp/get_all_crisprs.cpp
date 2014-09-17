@@ -146,7 +146,7 @@ int main(int argc, char * argv[]) {
                 //skip if its a whitespace character
                 if ( smap[c] )
                     continue;
-                
+
                 //remove first element and add new char to the end
                 //should use an integer instead it would be quicker
                 current.pop_front();
@@ -161,14 +161,21 @@ int main(int argc, char * argv[]) {
 
                     //check if this is a valid crispr
                     std::list<char>::iterator start = current.begin();
+                    if ( *(start) == 'C' && *(++start) == 'T' ) {
+                        total++;
+                        println(current, seqname, seq_start, 0);
+                    }
                     if ( *(start) == 'C' && *(++start) == 'C' ) {
                         total++;
-
                         //last field is pam_right
                         println(current, seqname, seq_start, 0);
                     }
 
                     std::list<char>::iterator end = current.end();
+                    if ( *(--end) == 'G' && *(--end) == 'A' ) {
+                        total++;
+                        println(current, seqname, seq_start, 1);
+                    }
                     if ( *(--end) == 'G' && *(--end) == 'G' ) {
                         total++;
                         println(current, seqname, seq_start, 1);
