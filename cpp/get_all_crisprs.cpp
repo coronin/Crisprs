@@ -161,22 +161,24 @@ int main(int argc, char * argv[]) {
 
                     //check if this is a valid crispr
                     std::list<char>::iterator start = current.begin();
+                    std::list<char>::iterator startt = start;
                     if ( *(start) == 'C' && *(++start) == 'T' ) {
                         total++;
                         println(current, seqname, seq_start, 0);
                     }
-                    if ( *(start) == 'C' && *(++start) == 'C' ) {
+                    if ( *(startt) == 'C' && *(++startt) == 'C' ) {
                         total++;
                         //last field is pam_right
                         println(current, seqname, seq_start, 0);
                     }
 
                     std::list<char>::iterator end = current.end();
+                    std::list<char>::iterator endd = end;
                     if ( *(--end) == 'G' && *(--end) == 'A' ) {
                         total++;
                         println(current, seqname, seq_start, 1);
                     }
-                    if ( *(--end) == 'G' && *(--end) == 'G' ) {
+                    if ( *(--endd) == 'G' && *(--endd) == 'G' ) {
                         total++;
                         println(current, seqname, seq_start, 1);
                     }
